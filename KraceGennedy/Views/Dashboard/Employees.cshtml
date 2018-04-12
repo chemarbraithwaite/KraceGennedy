@@ -1,0 +1,99 @@
+﻿@model IEnumerable<KraceGennedy.Models.Employee>
+
+@{
+    ViewBag.Title = "Employees";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Employees
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" cellspacing="0">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.firstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.lastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.telephoneNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.address1)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.city)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.country)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.lat)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.lon)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Role1.roleDes)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.firstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.telephoneNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.city)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lon)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Role1.roleDes)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+

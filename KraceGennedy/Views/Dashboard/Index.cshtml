@@ -1,0 +1,684 @@
+﻿
+@model KraceGennedy.Models.Notify
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Forecast for the next 5 days</h2>
+@using (Html.BeginForm("Email", "Dashboard", FormMethod.Post))
+{
+    <form id="email">
+
+        <input class="btn btn-outline-danger btn-sm " onclick="EmailToday()" type="submit" value="Send Notfication for Today" />
+
+
+        @Html.Hidden("Today", false)
+        @Html.Hidden("Tomorrow", false)
+        @Html.Hidden("RainKngToday", false)
+        @Html.Hidden("RainKngTomorrow", false)
+        @Html.Hidden("RainMobdayTomorrow", false)
+        @Html.Hidden("RainMobdayToday", false)
+
+
+
+
+        <input class="btn btn-outline-danger btn-sm" role="button" onclick="EmailTomorrow()" type="submit" value="Send Notfication for Tomorrow" />
+
+    </form>
+}
+
+
+
+@if (Model != null)
+{
+    if (Model.Sent)
+    {
+        <br />
+        <h5 class="text-success">Notifications sent!</h5>
+
+    }
+
+
+}
+
+
+<br />
+<br />
+
+<div class="row align-items-center">
+    <div class="col-xl-1 col-sm-4 mb-3">
+        <h5>Kingston</h5>
+    </div>
+    <div class="col-xl-2 col-sm-4 mb-3">
+        <div id="kingBg0" class="card text-white  o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i id="kingIcon0" class="fa fa-fw "></i>
+                </div>
+                <div id="kingDate0" class="mr-5">
+                </div>
+            </div>
+            <div class="collapse" id="kingInfo0">
+                <div class="card card-body text-dark" id="kingDetails0">
+                </div>
+            </div>
+            <a class="card-footer btn-sm text-white clearfix small z-1" data-toggle="collapse" href="#kingInfo0" role="button" aria-expanded="false" aria-controls="kingInfo0">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 mb-3">
+        <div id="kingBg1" class="card text-white  o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i id="kingIcon1" class="fa fa-fw "></i>
+                </div>
+                <div id="kingDate1" class="mr-5">
+                </div>
+            </div>
+            <div class="collapse" id="kingInfo1">
+                <div class="card card-body text-dark" id="kingDetails1">
+                </div>
+            </div>
+            <a class="card-footer btn-sm text-white clearfix small z-1" data-toggle="collapse" href="#kingInfo1" role="button" aria-expanded="false" aria-controls="kingInfo1">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 mb-3">
+        <div id="kingBg2" class="card text-white  o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i id="kingIcon2" class="fa fa-fw "></i>
+                </div>
+                <div id="kingDate2" class="mr-5">
+                </div>
+            </div>
+            <div class="collapse" id="kingInfo2">
+                <div class="card card-body text-dark" id="kingDetails2">
+                </div>
+            </div>
+            <a class="card-footer btn-sm text-white clearfix small z-1" data-toggle="collapse" href="#kingInfo2" role="button" aria-expanded="false" aria-controls="kingInfo2">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 mb-3">
+        <div id="kingBg3" class="card text-white  o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i id="kingIcon3" class="fa fa-fw "></i>
+                </div>
+                <div id="kingDate3" class="mr-5">
+                </div>
+            </div>
+            <div class="collapse" id="kingInfo3">
+                <div class="card card-body text-dark" id="kingDetails3">
+                </div>
+            </div>
+            <a class="card-footer btn-sm text-white clearfix small z-1" data-toggle="collapse" href="#kingInfo3" role="button" aria-expanded="false" aria-controls="kingInfo3">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 mb-3">
+        <div id="kingBg4" class="card text-white  o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i id="kingIcon4" class="fa fa-fw "></i>
+                </div>
+                <div id="kingDate4" class="mr-5">
+                </div>
+            </div>
+            <div class="collapse" id="kingInfo4">
+                <div class="card card-body text-dark" id="kingDetails4">
+                </div>
+            </div>
+            <a class="card-footer btn-sm text-white clearfix small z-1" data-toggle="collapse" href="#kingInfo4" role="button" aria-expanded="false" aria-controls="kingInfo4">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<div class="row align-items-center">
+    <div class="col-xl-1 col-sm-4 mb-3">
+        <h5>Montego Bay</h5>
+    </div>
+    <div class="col-xl-2 col-sm-4 mb-3">
+        <div id="mobdayBg0" class="card text-white  o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i id="mobdayIcon0" class="fa fa-fw "></i>
+                </div>
+                <div id="mobdayDate0" class="mr-5">
+                </div>
+            </div><div class="collapse" id="mobdayInfo0">
+                <div class="card card-body text-dark" id="mobdayDetails0">
+                </div>
+            </div>
+            <a class="card-footer btn-sm text-white clearfix small z-1" data-toggle="collapse" href="#mobdayInfo0" role="button" aria-expanded="false" aria-controls="mobdayInfo0">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 mb-3">
+        <div id="mobdayBg1" class="card text-white  o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i id="mobdayIcon1" class="fa fa-fw "></i>
+                </div>
+                <div id="mobdayDate1" class="mr-5">
+                </div>
+            </div><div class="collapse" id="mobdayInfo1">
+                <div class="card card-body text-dark" id="mobdayDetails1">
+                </div>
+            </div>
+            <a class="card-footer btn-sm text-white clearfix small z-1" data-toggle="collapse" href="#mobdayInfo1" role="button" aria-expanded="false" aria-controls="mobdayInfo1">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 mb-3">
+        <div id="mobdayBg2" class="card text-white  o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i id="mobdayIcon2" class="fa fa-fw "></i>
+                </div>
+                <div id="mobdayDate2" class="mr-5">
+                </div>
+
+            </div><div class="collapse" id="mobdayInfo2">
+                <div class="card card-body text-dark" id="mobdayDetails2">
+                </div>
+            </div>
+            <a class="card-footer btn-sm text-white clearfix small z-1" data-toggle="collapse" href="#mobdayInfo2" role="button" aria-expanded="false" aria-controls="mobdayInfo2">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 mb-3">
+        <div id="mobdayBg3" class="card text-white  o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i id="mobdayIcon3" class="fa fa-fw "></i>
+                </div>
+                <div id="mobdayDate3" class="mr-5">
+                </div>
+            </div>
+            <div class="collapse" id="mobdayInfo3">
+                <div class="card card-body text-dark" id="mobdayDetails3">
+                </div>
+            </div>
+            <a class="card-footer btn-sm text-white clearfix small z-1" data-toggle="collapse" href="#mobdayInfo3" role="button" aria-expanded="false" aria-controls="mobdayInfo3">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 mb-3">
+        <div id="mobdayBg4" class="card text-white  o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i id="mobdayIcon4" class="fa fa-fw  "></i>
+                </div>
+                <div id="mobdayDate4" class="mr-5">
+                </div>
+            </div>
+            <div class="collapse" id="mobdayInfo4">
+                <div class="card card-body text-dark" id="mobdayDetails4">
+                </div>
+            </div>
+            <a class="card-footer btn-sm text-white clearfix small z-1" data-toggle="collapse" href="#mobdayInfo4" role="button" aria-expanded="false" aria-controls="mobdayInfo4">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+</div>
+<div>
+    <h5>Key</h5>
+    <p class="btn-group">
+        <a href="#" class="btn btn-dark">Rain</a>
+        <a href="#" class="btn btn-secondary">Mist</a>
+        <a href="#" class="btn btn-info">Clouds</a>
+        <a href="#" class="btn btn-warning">Clear</a>
+    </p>
+
+
+</div>
+<script>
+
+    $(document).ready(function () {
+
+
+
+        KingstonWeather();
+        MobdayWeather();
+
+
+    }
+
+
+    );
+
+    function EmailToday() {
+        document.getElementById("Today").setAttribute("value", "True");
+    }
+
+    function EmailTomorrow() {
+        document.getElementById("Tomorrow").setAttribute("value", "True");
+    }
+
+    function MobdayWeather() {
+
+        var key = "373753d2ec93d94c6686bb93643e4d32";
+        var cityID = 3489460;
+
+
+        $.ajax({
+
+            dataType: "json",
+            url: "http://api.openweathermap.org/data/2.5/forecast",
+            //url: "/Content/JSON/weather.json",
+            type: "GET",
+            data: { id: cityID, appid: key, units: 'metric' },
+
+            success: function (data) {
+
+                var total = data.cnt;
+                var count = 0;
+                var lastBreak = 0;
+                var drizzle = false;
+                var drizzleDes = "";
+                var snow = false;
+                var snowDes = "";
+                var clouds = false;
+                var cloudsDes = "";
+                var clear = false;
+                var clearDes = "";
+                var rain = false;
+                var rainDes = "";
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                //Separate into days
+                for (x = 0; x < total - 1; x++) {
+
+                    if (data.list[x].weather[0].main.toLowerCase().includes("rain") || data.list[x].weather[0].main.toLowerCase().includes("thunderstorm")) {
+                        rain = true;
+                        rainDes = data.list[x].weather[0].description;
+
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("drizzle") || data.list[x].weather[0].main.toLowerCase().includes("mist")) {
+                        drizzle = true;
+                        drizzleDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("clouds")) {
+                        clouds = true;
+                        cloudsDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("clear")) {
+                        clear = true;
+                        clearDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("snow")) {
+                        snow = true;
+                        snowDes = data.list[x].weather[0].description;
+                    }
+
+                    if (new Date(data.list[x].dt_txt).getDate() != new Date(data.list[x + 1].dt_txt).getDate()) {
+
+                        $("#mobdayDate" + count).text(days[new Date(data.list[x].dt_txt).getDay()] + " " + months[new Date(data.list[x].dt_txt).getMonth()] + " " + new Date(data.list[x].dt_txt).getDate());
+                        if (rain) {
+
+                            $("#mobdayBg" + count).addClass("bg-dark");
+                            $("#mobdayIcon" + count).addClass("fa-tint");
+                            $("#mobdayDetails" + count).text(rainDes);
+
+                        } else if (drizzle) {
+
+                            $("#mobdayBg" + count).addClass("bg-secondary");
+                            $("#mobdayIcon" + count).addClass("fa-tint");
+                            $("#mobdayDetails" + count).text(drizzleDes);
+
+                        } else if (snow) {
+
+                            $("#mobdayBg" + count).addClass("bg-primary");
+                            $("#mobdayIcon" + count).addClass("fa-snowflake-o");
+                            $("#mobdayDetails" + count).text(snowDes);
+
+                        } else if (clouds) {
+
+                            $("#mobdayBg" + count).addClass("bg-info");
+                            $("#mobdayIcon" + count).addClass("fa-cloud");
+                            $("#mobdayDetails" + count).text(cloudsDes);
+
+                        } else if (clear) {
+
+                            $("#mobdayBg" + count).addClass("bg-warning");
+                            $("#mobdayIcon" + count).addClass("fa-sun-o");
+                            $("#mobdayDetails" + count).text(clearDes);
+
+                        }
+
+                        if (count == 0 && rain)
+                            document.getElementById("RainMobdayToday").setAttribute("value", "True");
+
+                        if (count == 1 && rain)
+                            document.getElementById("RainMobdayTomorrow").setAttribute("value", "True");
+
+                        snow = false;
+                        snowDes = "";
+                        rain = false;
+                        rainDes = "";
+                        clouds = false;
+                        cloudsDes = "";
+                        drizzle = false;
+                        drizzleDes = "";
+                        clear = false;
+                        clearDes = "";
+
+
+                        // alert(count + " " + x);
+                        lastBreak = x;
+                        count++;
+                    }
+
+                }
+
+
+                for (x = lastBreak + 1; x < total; x++) {
+
+                    if (data.list[x].weather[0].main.toLowerCase().includes("rain") || data.list[x].weather[0].main.toLowerCase().includes("thunderstorm")) {
+                        rain = true;
+                        rainDes = data.list[x].weather[0].description;
+
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("drizzle") || data.list[x].weather[0].main.toLowerCase().includes("mist")) {
+                        drizzle = true;
+                        drizzleDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("clouds")) {
+                        clouds = true;
+                        cloudsDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("clear")) {
+                        clear = true;
+                        clearDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("snow")) {
+                        snow = true;
+                        snowDes = data.list[x].weather[0].description;
+                    }
+
+
+                }
+
+                $("#mobdayDate" + count).text(days[new Date(data.list[total - 1].dt_txt).getDay()] + " " + months[new Date(data.list[total - 1].dt_txt).getMonth()] + " " + new Date(data.list[total - 1].dt_txt).getDate());
+                if (rain) {
+
+                    $("#mobdayBg" + count).addClass("bg-dark");
+                    $("#mobdayIcon" + count).addClass("fa-tint");
+                    $("#mobdayDetails" + count).text(rainDes);
+
+                } else if (drizzle) {
+
+                    $("#mobdayBg" + count).addClass("bg-secondary");
+                    $("#mobdayIcon" + count).addClass("fa-tint");
+                    $("#mobdayDetails" + count).text(drizzleDes);
+
+                } else if (snow) {
+
+                    $("#mobdayBg" + count).addClass("bg-primary");
+                    $("#mobdayIcon" + count).addClass("fa-snowflake-o");
+                    $("#mobdayDetails" + count).text(snowDes);
+
+                } else if (clouds) {
+
+                    $("#mobdayBg" + count).addClass("bg-info");
+                    $("#mobdayIcon" + count).addClass("fa-cloud");
+                    $("#mobdayDetails" + count).text(cloudsDes);
+
+                } else if (clear) {
+
+                    $("#mobdayBg" + count).addClass("bg-warning");
+                    $("#mobdayIcon" + count).addClass("fa-sun-o");
+                    $("#mobdayDetails" + count).text(clearDes);
+
+                }
+
+
+                //alert(lastBreak);
+                for (x = 0; x < total; x++) {
+
+                    $("#end").append(new Date(data.list[x].dt_txt).getDate() + " " + data.list[x].weather[0].main + "<br/>")
+
+
+                }
+
+
+
+            }
+
+        });
+
+    }
+
+    function KingstonWeather() {
+
+        var key = "b8e03b05f9e23cbc7a5f3caa79467642";
+        var cityID = 3489854;
+
+
+        $.ajax({
+
+            dataType: "json",
+            url: "http://api.openweathermap.org/data/2.5/forecast",
+            //url: "/Content/JSON/weather.json",
+            type: "GET",
+            data: { id: cityID, appid: key, units: 'metric' },
+            success: function (data) {
+
+                var total = data.cnt;
+                var count = 0;
+                var lastBreak = 0;
+                var drizzle = false;
+                var drizzleDes = "";
+                var snow = false;
+                var snowDes = "";
+                var clouds = false;
+                var cloudsDes = "";
+                var clear = false;
+                var clearDes = "";
+                var rain = false;
+                var rainDes = "";
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                //Separate into days
+                for (x = 0; x < total - 1; x++) {
+
+                    if (data.list[x].weather[0].main.toLowerCase().includes("rain") || data.list[x].weather[0].main.toLowerCase().includes("thunderstorm")) {
+                        rain = true;
+                        rainDes = data.list[x].weather[0].description;
+
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("drizzle") || data.list[x].weather[0].main.toLowerCase().includes("mist")) {
+                        drizzle = true;
+                        drizzleDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("clouds")) {
+                        clouds = true;
+                        cloudsDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("clear")) {
+                        clear = true;
+                        clearDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("snow")) {
+                        snow = true;
+                        snowDes = data.list[x].weather[0].description;
+                    }
+
+                    if (new Date(data.list[x].dt_txt).getDate() != new Date(data.list[x + 1].dt_txt).getDate()) {
+
+                        $("#kingDate" + count).text(days[new Date(data.list[x].dt_txt).getDay()] + " " + months[new Date(data.list[x].dt_txt).getMonth()] + " " + new Date(data.list[x].dt_txt).getDate());
+                        if (rain) {
+
+                            $("#kingBg" + count).addClass("bg-dark");
+                            $("#kingIcon" + count).addClass("fa-tint");
+                            $("#kingDetails" + count).text(rainDes);
+
+                        } else if (drizzle) {
+
+                            $("#kingBg" + count).addClass("bg-secondary");
+                            $("#kingIcon" + count).addClass("fa-tint");
+                            $("#kingDetails" + count).text(drizzleDes);
+
+                        } else if (snow) {
+
+                            $("#kingBg" + count).addClass("bg-primary");
+                            $("#kingIcon" + count).addClass("fa-snowflake-o");
+                            $("#kingDetails" + count).text(snowDes);
+
+                        } else if (clouds) {
+
+                            $("#kingBg" + count).addClass("bg-info");
+                            $("#kingIcon" + count).addClass("fa-cloud");
+                            $("#kingDetails" + count).text(cloudsDes);
+
+                        } else if (clear) {
+
+                            $("#kingBg" + count).addClass("bg-warning");
+                            $("#kingIcon" + count).addClass("fa-sun-o");
+                            $("#kingDetails" + count).text(clearDes);
+
+                        }
+
+                        if (count == 0 && rain)
+                            document.getElementById("RainKngToday").setAttribute("value", "True");
+
+                        if (count == 1 && rain)
+                            document.getElementById("RainKngTomorrow").setAttribute("value", "True");
+
+
+                        snow = false;
+                        snowDes = "";
+                        rain = false;
+                        rainDes = "";
+                        clouds = false;
+                        cloudsDes = "";
+                        drizzle = false;
+                        drizzleDes = "";
+                        clear = false;
+                        clearDes = "";
+
+
+                        // alert(count + " " + x);
+                        lastBreak = x;
+                        count++;
+                    }
+
+                }
+
+
+                for (x = lastBreak + 1; x < total; x++) {
+
+                    if (data.list[x].weather[0].main.toLowerCase().includes("rain") || data.list[x].weather[0].main.toLowerCase().includes("thunderstorm")) {
+                        rain = true;
+                        rainDes = data.list[x].weather[0].description;
+
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("drizzle") || data.list[x].weather[0].main.toLowerCase().includes("mist")) {
+                        drizzle = true;
+                        drizzleDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("clouds")) {
+                        clouds = true;
+                        cloudsDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("clear")) {
+                        clear = true;
+                        clearDes = data.list[x].weather[0].description;
+                    } else if (data.list[x].weather[0].main.toLowerCase().includes("snow")) {
+                        snow = true;
+                        snowDes = data.list[x].weather[0].description;
+                    }
+                }
+
+
+                $("#kingDate" + count).text(days[new Date(data.list[total - 1].dt_txt).getDay()] + " " + months[new Date(data.list[total - 1].dt_txt).getMonth()] + " " + new Date(data.list[total - 1].dt_txt).getDate());
+                if (rain) {
+
+                    $("#kingBg" + count).addClass("bg-dark");
+                    $("#kingIcon" + count).addClass("fa-tint");
+                    $("#kingDetails" + count).text(rainDes);
+
+                } else if (drizzle) {
+
+                    $("#kingBg" + count).addClass("bg-secondary");
+                    $("#kingIcon" + count).addClass("fa-tint");
+                    $("#kingDetails" + count).text(drizzleDes);
+
+                } else if (snow) {
+
+                    $("#kingBg" + count).addClass("bg-primary");
+                    $("#kingIcon" + count).addClass("fa-snowflake-o");
+                    $("#kingDetails" + count).text(snowDes);
+
+                } else if (clouds) {
+
+                    $("#kingBg" + count).addClass("bg-info");
+                    $("#kingIcon" + count).addClass("fa-cloud");
+                    $("#kingDetails" + count).text(cloudsDes);
+
+                } else if (clear) {
+
+                    $("#kingBg" + count).addClass("bg-warning");
+                    $("#kingIcon" + count).addClass("fa-sun-o");
+                    $("#kingDetails" + count).text(clearDes);
+
+                }
+
+
+
+                for (x = 0; x < total; x++) {
+
+                    $("#end").append(new Date(data.list[x].dt_txt).getDate() + " " + data.list[x].weather[0].main + "<br/>")
+
+
+                }
+
+
+
+            }
+
+        });
+
+    }
+
+
+</script>
